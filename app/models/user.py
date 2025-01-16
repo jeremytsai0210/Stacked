@@ -1,6 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from datetime import datetime
 
 
 class User(db.Model, UserMixin):
@@ -10,9 +11,19 @@ class User(db.Model, UserMixin):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(40), nullable=False, unique=True)
-    email = db.Column(db.String(255), nullable=False, unique=True)
-    hashed_password = db.Column(db.String(255), nullable=False)
+    first_name = db.Column(db.String, nullable=False)
+    last_name = db.Column(db.String, nullable=False)
+    username = db.Column(db.String, unique=True, nullable=False)
+    email = db.Column(db.String, unique=True, nullable=False)
+    hashed_password = db.Column(db.String, nullable=False)
+    tier = db.Column(db.String, nullable=False)
+    is_admin = db.Column(db.Boolean, default=False, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
+
+    avatars = db.relationship('Avatar', back_populates='user', cascade='all, delete-orphan')
+    # reviews = db.relationship('Review', back_populates='user', cascade='all, delete-orphan')
+    # borrowing_transactions = db.relationship('BorrowingTransaction', back_populates='user', cascade='all, delete-orphan')
 
     @property
     def password(self):
@@ -28,6 +39,12 @@ class User(db.Model, UserMixin):
     def to_dict(self):
         return {
             'id': self.id,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'tier': self.tier,
+            'is_admin': self.is_admin,
+            'created_at': self.created_at.isoformat(),
+            'updated_at': self.updated_at.isoformat(),
         }
