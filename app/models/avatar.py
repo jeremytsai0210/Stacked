@@ -21,5 +21,6 @@ class Avatar(db.Model):
             'avatar_image': self.avatar_image,
             'description': self.description,
             'is_default': self.is_default,
+            'selected': self.selected,
             'user_id': self.user_id,
         }
