@@ -107,32 +107,31 @@ def update_book(book_id):
         return jsonify({'message': 'You are not authorized to update this book'}), 403
     
     data = request.get_json()
-    title = data.get('title')
-    author = data.get('author')
-    description = data.get('description')
-    genre = data.get('genre')
-    cover_image = data.get('cover_image')
-    total_copies = data.get('total_copies')
-    available_copies = data.get('available_copies')
-    published_year = data.get('published_year')
+    existing_data = book.to_dict()
+    form = BookForm(data={**existing_data, **data})
+    form['csrf_token'].data = request.cookies['csrf_token']
 
-    if not title and not author and not genre and not total_copies and not available_copies and not published_year:
-        return jsonify({'message': 'Invalid data'}), 400
-    
-    book.title = title
-    book.author = author
-    book.description = description
-    book.genre = genre
-    book.cover_image = cover_image
-    book.total_copies = total_copies
-    book.available_copies = available_copies
-    book.published_year = published_year
-    db.session.commit()
+    if form.validate_on_submit():
+        book.title = form.title.data
+        book.author = form.author.data
+        book.description = form.description.data
+        book.genre = form.genre.data
+        book.cover_image = form.cover_image.data
+        book.total_copies = form.total_copies.data
+        book.available_copies = form.available_copies.data
+        book.published_year = form.published_year.data
+
+        db.session.commit()
+
+        return jsonify({ 
+            'message': 'Book updated successfully', 
+            'book': book.to_dict() 
+        }), 200
     
     return jsonify({ 
-        'message': 'Book updated successfully', 
-        'book': book.to_dict() 
-    }), 200
+        'message': 'Validation error', 
+        'errors': form.errors
+    }), 400
 
 # Delete a book
 @book_routes.route('/<int:book_id>', methods=['DELETE'])
