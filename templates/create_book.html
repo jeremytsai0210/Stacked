@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Create a New Book</title>
+    </head>
+    <body>
+        <h1>Add a New Book</h1>
+
+        <form method="POST">
+            {{ form.csrf_token }}
+
+            <label for="title">Title:</label>
+            {{ form.title() }}<br />
+
+            <label for="author">Author:</label>
+            {{ form.author() }}<br />
+
+            <label for="description">Description:</label>
+            {{ form.description() }}<br />
+
+            <label for="genre">Genre:</label>
+            {{ form.genre() }}<br />
+
+            <label for="cover_image">Cover Image:</label>
+            {{ form.cover_image() }}<br />
+
+            <label for="total_copies">Total Copies:</label>
+            {{ form.total_copies() }}<br />
+
+            <label for="available_copies">Available Copies:</label>
+            {{ form.available_copies() }}<br />
+
+            <label for="published_year">Published Year:</label>
+            {{ form.published_year() }}<br />
+
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>
