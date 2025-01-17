@@ -22,7 +22,7 @@ class User(db.Model, UserMixin):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
 
     avatars = db.relationship('Avatar', back_populates='user', cascade='all, delete-orphan')
-    # reviews = db.relationship('Review', back_populates='user', cascade='all, delete-orphan')
+    reviews = db.relationship('Review', back_populates='user', cascade='all, delete-orphan')
     borrowing_transactions = db.relationship('BorrowingTransaction', back_populates='user', cascade='all, delete-orphan')
 
     @property

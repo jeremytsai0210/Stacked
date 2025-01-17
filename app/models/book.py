@@ -21,6 +21,7 @@ class Book(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
 
     borrowing_transactions = db.relationship('BorrowingTransaction', back_populates='book', cascade='all, delete-orphan')
+    reviews = db.relationship('Review', back_populates='book', cascade='all, delete-orphan')
 
     def to_dict(self):
         return {

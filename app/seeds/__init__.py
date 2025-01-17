@@ -3,6 +3,7 @@ from .users import seed_users, undo_users
 from .avatars import seed_avatars, undo_avatars
 from .books import seed_books, undo_books
 from .borrowing_transactions import seed_borrowing_transactions, undo_borrowing_transactions
+from .reviews import seed_reviews, undo_reviews
 
 from app.models.db import db, environment, SCHEMA
 
@@ -23,10 +24,12 @@ def seed():
         undo_avatars()
         undo_books()
         undo_borrowing_transactions()
+        undo_reviews()
     seed_users()
     seed_avatars()
     seed_books()
     seed_borrowing_transactions()
+    seed_reviews()
     # Add other seed functions here
 
 
@@ -37,4 +40,5 @@ def undo():
     undo_avatars()
     undo_books()
     undo_borrowing_transactions()
+    undo_reviews()
     # Add other undo functions here
