@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import db, Book, BorrowingTransaction
-from app.forms import BookForm
+from app.models import db, Book, BorrowingTransaction, Review
+from app.forms import BookForm, ReviewForm
 from datetime import datetime, timedelta
 
 book_routes = Blueprint('books', __name__)
@@ -223,3 +223,50 @@ def borrow_book(book_id):
         'borrow_date': borrowing_transaction.borrow_date,
         'due_date': borrowing_transaction.due_date
     }), 200
+
+# Create a new review
+@book_routes.route('/<int:book_id>/review', methods=['POST'])
+@login_required
+def review_book(book_id):
+    """
+    Create a new review for a book
+    """
+    # Check if book exists
+    book = Book.query.get(book_id)
+    if not book:
+        return jsonify({'message': 'Book not found'}), 404
+    
+    # Check if user already reviewed the book
+    existing_review = Review.query.filter_by(
+        user_id=current_user.id,
+        book_id=book_id
+    ).first()
+    if existing_review:
+        return jsonify({'message': 'You have already reviewed this book'}), 400
+    
+    form = ReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        review_text = form.review_text.data
+        stars = form.stars.data
+    
+        new_review = Review(
+            user_id = current_user.id,
+            book_id = book_id,
+            review_text = review_text,
+            stars = stars
+        )
+
+        db.session.add(new_review)
+        db.session.commit()
+
+        return jsonify({
+            'message': 'Review created successfully',
+            'review': new_review.to_dict()
+        }), 200
+    
+    return jsonify({
+        'message': 'Invalid data',
+        'errors': form.errors
+    }), 400
