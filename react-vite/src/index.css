@@ -1,1 +1,80 @@
 /* TODO: Add sitewide styles */
+
+/*
+008080
+FF6F61
+E0E0E0
+2B2B2B
+F7F7F7
+*/
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #F7F7F7;
+  color: #2B2B2B;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 32px;
+  color: #008080;
+}
+h2 {
+  font-size: 24px;
+  color: #008080;
+}
+
+h3 {
+  font-size: 20px;
+  color: #008080;
+}
+
+h4 {
+  font-size: 16px;
+  color: #008080;
+}
+
+h5 {
+  font-size: 14px;
+  color: #008080;
+}
+
+h6 {
+  font-size: 12px;
+  color: #008080;
+}
+
+a {
+  color: #2B2B2B;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: none;
+  background-color: #008080;
+  color: #F7F7F7;
+}
+
+.borrow-button:hover {
+  background-color: #005757;
+}
+
+input {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #E0E0E0;
+}
+
+textarea {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #E0E0E0;
+}

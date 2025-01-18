@@ -1,0 +1,39 @@
+.book-detail-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px; /* Add space between the image and the details */
+    margin: 20px; /* Add some padding around the entire section */
+}
+
+.cover-image {
+    max-width: 200px; /* Limit the width of the image */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Optional: Add rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+}
+
+.book-information {
+    flex: 1; /* Allow this section to take up remaining space */
+    font-family: Arial, sans-serif; /* Use a clean font */
+    font-size: 16px; /* Adjust font size */
+    line-height: 1.6; /* Improve text readability */
+}
+
+.book-information-label {
+    font-weight: bold; /* Highlight the labels */
+    color: #333; /* Use a darker color for the labels */
+}
+
+.available-copies {
+    font-weight: bold;
+    color: #333; /* Default color */
+}
+
+.no-copies {
+    color: red; /* Red text when no copies are available */
+}
+
+.borrow-button:disabled {
+    background-color: #ccc; /* Gray color for disabled button */
+    cursor: not-allowed;
+}
