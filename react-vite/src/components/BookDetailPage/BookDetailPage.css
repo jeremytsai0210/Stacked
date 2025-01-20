@@ -1,39 +1,87 @@
 .book-detail-content {
     display: flex;
     align-items: flex-start;
-    gap: 20px; /* Add space between the image and the details */
-    margin: 20px; /* Add some padding around the entire section */
+    gap: 20px;
+    margin: 20px;
 }
 
 .cover-image {
-    max-width: 200px; /* Limit the width of the image */
-    height: auto; /* Maintain aspect ratio */
-    border-radius: 10px; /* Optional: Add rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+    max-width: 200px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
 }
 
 .book-information {
-    flex: 1; /* Allow this section to take up remaining space */
-    font-family: Arial, sans-serif; /* Use a clean font */
-    font-size: 16px; /* Adjust font size */
-    line-height: 1.6; /* Improve text readability */
+    flex: 1;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
 }
 
 .book-information-label {
-    font-weight: bold; /* Highlight the labels */
-    color: #333; /* Use a darker color for the labels */
+    font-weight: bold;
+    color: #2b2b2b;
 }
 
 .available-copies {
     font-weight: bold;
-    color: #333; /* Default color */
+    color: #2b2b2b;
 }
 
 .no-copies {
-    color: red; /* Red text when no copies are available */
+    color: #ff6f61;
 }
 
 .borrow-button:disabled {
-    background-color: #ccc; /* Gray color for disabled button */
+    background-color: #ccc;
     cursor: not-allowed;
+}
+
+/**************************
+THIS IS THE REVIEW SECTION 
+***************************/
+
+.reviews-content {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: auto;
+}
+
+.review-tile {
+    margin: 20px 0;
+    padding: 10px;
+}
+
+.user-review {
+    border: 1px solid #2b2b2b;
+    border-radius: 10px;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.review-user {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.review-date {
+    font-size: 12px;
+    color: #a9a9a9;
+}
+
+.review-stars {
+    display: flex;
+    gap: 5px;
+    color: #ff6f61;
+}
+
+.review-actions {
+    display: flex;
+    gap: 10px;
 }

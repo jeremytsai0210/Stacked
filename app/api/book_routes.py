@@ -243,30 +243,56 @@ def review_book(book_id):
     ).first()
     if existing_review:
         return jsonify({'message': 'You have already reviewed this book'}), 400
-    
-    form = ReviewForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
 
-    if form.validate_on_submit():
-        review_text = form.review_text.data
-        stars = form.stars.data
-    
-        new_review = Review(
-            user_id = current_user.id,
-            book_id = book_id,
-            review_text = review_text,
-            stars = stars
-        )
+    data = request.get_json()
+    review_text = data.get('review_text')
+    stars = data.get('stars')
 
-        db.session.add(new_review)
-        db.session.commit()
+    # Validate the review data
+    if not review_text or not stars:
+        return jsonify({'message': 'Review text and stars are required'}), 400
 
-        return jsonify({
-            'message': 'Review created successfully',
-            'review': new_review.to_dict()
-        }), 200
-    
+    # Create and save the new review
+    new_review = Review(
+        user_id=current_user.id,
+        book_id=book_id,
+        review_text=review_text,
+        stars=stars
+    )
+
+    db.session.add(new_review)
+    db.session.commit()
+
     return jsonify({
-        'message': 'Invalid data',
-        'errors': form.errors
-    }), 400
+        'message': 'Review created successfully',
+        'review': new_review.to_dict()
+    }), 200
+
+# THIS CODE IS COMMENTED OUT BECAUSE THE REVIEW FORM IS NOT BEING USED ANYMORE
+# VALIDATION IS DONE IN THE FRONTEND
+    # form = ReviewForm()
+    # form['csrf_token'].data = request.cookies['csrf_token']
+
+    # if form.validate_on_submit():
+    #     review_text = form.review_text.data
+    #     stars = form.stars.data
+    
+    #     new_review = Review(
+    #         user_id = current_user.id,
+    #         book_id = book_id,
+    #         review_text = review_text,
+    #         stars = stars
+    #     )
+
+    #     db.session.add(new_review)
+    #     db.session.commit()
+
+    #     return jsonify({
+    #         'message': 'Review created successfully',
+    #         'review': new_review.to_dict()
+    #     }), 200
+    
+    # return jsonify({
+    #     'message': 'Invalid data',
+    #     'errors': form.errors
+    # }), 400

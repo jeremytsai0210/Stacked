@@ -1,7 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import * as bookActions from '../../redux/book';
+import * as reviewActions from '../../redux/review';
+import { FaStar } from 'react-icons/fa6';
+import ReviewForm from './ReviewForm';
 import './BookDetailPage.css';
 
 function BookDetailPage() {
@@ -9,9 +12,14 @@ function BookDetailPage() {
     const { bookId } = useParams();
 
     const book = useSelector((state) => state.books[bookId]);
+    const user = useSelector((state) => state.session.user);
+    const reviews = useSelector((state) => Object.values(state.reviews));
+
+    console.log(reviews);
 
     useEffect(() => {
         dispatch(bookActions.thunkGetSingleBook(bookId));
+        dispatch(reviewActions.thunkGetBookReviews(bookId));
     }, [dispatch, bookId]);
 
     return (
@@ -44,14 +52,58 @@ function BookDetailPage() {
                             {book?.available_copies}
                         </span>
                     </p>
+
                     <button
                         className="borrow-button"
-                        disabled={book?.available_copies === 0}
-                        onClick={() => alert('Borrow button clicked!')}
+                        disabled={!user || book?.available_copies === 0}
+                        title={
+                            !user 
+                                ? 'You need to log in to borrow a book!' 
+                                : book?.available_copies === 0 
+                                    ? 'No copies available.' 
+                                    : ''
+                        }
+                        onClick={() => {
+                            if (user) {
+                                alert('Borrow button clicked!');
+                            }
+                        }}
                     >
                         Borrow
                     </button>
                 </div>
+            </div>
+
+            <div className="reviews-content">
+                <h2>Reviews</h2>
+                {!reviews.some((review) => review.user.id === user?.id) && user && (
+                    <ReviewForm bookId={bookId} />
+                )}
+                {reviews.map((review) => {
+                    const reviewDate = new Date(review.updated_at).toLocaleDateString();
+                    const isUserReview = review.user.id === user?.id;
+                    return (
+                        <div key={review.id} className={`review-tile ${isUserReview ? 'user-review' : ''}`}>
+                            <div className="review-header">
+                                <p className="review-user">{review.user.username}</p>
+                                <p className="review-date">{reviewDate}</p>
+                            </div>
+                            <div className="review-stars">
+                                {[...Array(review.stars)].map((_, i) => (
+                                    <FaStar key={i} />
+                                ))}
+                            </div>
+                            <p className="review-text">{review.review_text}</p>
+                            {isUserReview && (
+                                <div className="review-actions">
+                                    <button onClick={() => alert('Update button clicked!')}>Update</button>
+                                    <button onClick={() => alert('Delete button clicked!')}>Delete</button>
+                                </div>
+                            )}
+                            <hr/>
+                        </div>
+                    );
+                })}
             </div>
         </div>
     );

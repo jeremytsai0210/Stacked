@@ -206,7 +206,7 @@ def seed_reviews():
         updated_at=datetime.utcnow() - timedelta(days=6),
     )
     review26 = Review(
-        user_id=3,
+        user_id=4,
         book_id=6,
         review_text="A chilling story that kept me up at night. Horror fans, don’t miss this one.",
         stars=4,
@@ -214,7 +214,7 @@ def seed_reviews():
         updated_at=datetime.utcnow() - timedelta(days=11),
     )
     review27 = Review(
-        user_id=4,
+        user_id=3,
         book_id=7,
         review_text="The romance was heartfelt, but the plot was somewhat predictable.",
         stars=3,

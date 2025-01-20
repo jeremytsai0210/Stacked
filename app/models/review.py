@@ -27,5 +27,9 @@ class Review(db.Model):
             'review_text': self.review_text,
             'stars': self.stars,
             'created_at': self.created_at.isoformat(),
-            'updated_at': self.updated_at.isoformat()
+            'updated_at': self.updated_at.isoformat(),
+            'user': {
+                'id': self.user.id,
+                'username': self.user.username
+            }
         }
