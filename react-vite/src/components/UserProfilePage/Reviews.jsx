@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as reviewActions from '../../redux/review';
 import { FaStar } from 'react-icons/fa6';
+import OpenModalButton from '../OpenModalButton';
+import DeleteReviewModal from '../DeleteReviewModal';
+import UpdateReviewModal from '../UpdateReviewModal';
 import './Reviews.css';
 
 function Reviews() {
@@ -37,8 +40,16 @@ function Reviews() {
                                     </div>
                                 </div>
                                 <div className="user-review-actions">
-                                    <button onClick={() => alert('Update button clicked!')}>Update</button>
-                                    <button onClick={() => alert('Delete button clicked!')}>Delete</button>
+                                    <OpenModalButton
+                                        className="update-button"
+                                        buttonText="Update"
+                                        modalComponent={<UpdateReviewModal review={review} />}
+                                    />
+                                    <OpenModalButton
+                                        className="delete-button"
+                                        buttonText="Delete"
+                                        modalComponent={<DeleteReviewModal reviewId={review.id}/>}
+                                    />
                                 </div>
                             </div>
                             <div className="user-review-content">

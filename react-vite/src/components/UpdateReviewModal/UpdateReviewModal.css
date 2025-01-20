@@ -1,0 +1,42 @@
+.update-modal {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 10px;
+}
+
+.update-modal h2 {
+    margin: 0;
+}
+
+.error {
+    color: #ff6f61;
+}
+
+.review-stars {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.review-stars .active {
+    color: #ff6f61; /* Filled color */
+    cursor: pointer;
+}
+
+.review-stars .inactive {
+    color: #a9a9a9; /* Empty color */
+    cursor: pointer;
+}
+
+.review-text {
+    width: 100%;
+    height: 50px;
+}
+
+.update-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}

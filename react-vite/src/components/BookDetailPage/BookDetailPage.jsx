@@ -5,6 +5,9 @@ import * as bookActions from '../../redux/book';
 import * as reviewActions from '../../redux/review';
 import { FaStar } from 'react-icons/fa6';
 import ReviewForm from './ReviewForm';
+import OpenModalButton from '../OpenModalButton';
+import DeleteReviewModal from '../DeleteReviewModal';
+import UpdateReviewModal from '../UpdateReviewModal';
 import './BookDetailPage.css';
 
 function BookDetailPage() {
@@ -15,20 +18,19 @@ function BookDetailPage() {
     const user = useSelector((state) => state.session.user);
     const reviews = useSelector((state) => Object.values(state.reviews));
 
-    console.log(reviews);
-
     useEffect(() => {
         dispatch(bookActions.thunkGetSingleBook(bookId));
         dispatch(reviewActions.thunkGetBookReviews(bookId));
     }, [dispatch, bookId]);
 
-    const handleDeleteReview = (reviewId) => {
-        dispatch(reviewActions.thunkDeleteReview(reviewId));
-    }
+    const totalReviews = reviews.length;
+    const averageRating = totalReviews
+        ? (reviews.reduce((sum, review) => sum + review.stars, 0) / totalReviews).toFixed(1)
+        : null;
 
     return (
         <div className="book-detail">
-            <h1>{book?.title}</h1>
+            <h1>{book?.title} - {averageRating} <FaStar className="big-star"/></h1>
             <div className="book-detail-content">
                 <img src={book?.cover_image} alt={book?.title} className="cover-image" />
                 <div className="book-information">
@@ -56,6 +58,14 @@ function BookDetailPage() {
                             {book?.available_copies}
                         </span>
                     </p>
+                    <p>
+                        <span className="book-information-label">Total rating:</span>
+                        {averageRating} <FaStar className="small-star"/>
+                    </p>
+                    <p>
+                        <span className="book-information-label">Total reviews:</span>
+                        {totalReviews}
+                    </p>
 
                     <button
                         className="borrow-button"
@@ -75,6 +85,9 @@ function BookDetailPage() {
                     >
                         Borrow
                     </button>
+                    <p>
+                        {!user ? '- Log in to borrow a book!' : ''}
+                    </p>
                 </div>
             </div>
 
@@ -100,8 +113,16 @@ function BookDetailPage() {
                             <p className="review-text">{review.review_text}</p>
                             {isUserReview && (
                                 <div className="review-actions">
-                                    <button onClick={() => alert('Update button clicked!')}>Update</button>
-                                    <button onClick={() => alert('Delete button clicked!')}>Delete</button>
+                                    <OpenModalButton
+                                        className="update-button"
+                                        buttonText="Update"
+                                        modalComponent={<UpdateReviewModal review={review} />}
+                                    />
+                                    <OpenModalButton
+                                        className="delete-button"
+                                        buttonText="Delete"
+                                        modalComponent={<DeleteReviewModal reviewId={review.id}/>}
+                                    />
                                 </div>
                             )}
                             <hr/>
