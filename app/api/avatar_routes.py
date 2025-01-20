@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, url_for
 from flask_login import login_required, current_user
 from app.models import db, Avatar
 from app.forms import AvatarForm
@@ -11,11 +11,20 @@ def avatars():
     """
     Query for all avatars and returns them in a list of avatar dictionaries
     """
-    avatars = Avatar.query.filter_by(is_default=True).all()
+    default_avatars = Avatar.query.filter_by(is_default=True).all()
     if not avatars:
         return jsonify({'message': 'No avatars found'}), 404
+    
+    avatar_list = [{
+        'id': avatar.id,
+        'avatar_image': url_for('static', filename=avatar.avatar_image, _external=True),
+        'description': avatar.description,
+        'is_default': avatar.is_default,
+        'selected': avatar.selected,
+        'user_id': avatar.user_id
+    } for avatar in default_avatars]
 
-    return jsonify({'avatars': [avatar.to_dict() for avatar in avatars]}), 200
+    return jsonify({'avatars': avatar_list}), 200
 
 # Get all avatars of the current user
 @avatar_routes.route('/user/<int:user_id>')

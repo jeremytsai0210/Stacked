@@ -31,5 +31,11 @@ class Review(db.Model):
             'user': {
                 'id': self.user.id,
                 'username': self.user.username
+            },
+            'book': {
+                'id': self.book.id,
+                'title': self.book.title,
+                'author': self.book.author,
+                'cover_image': self.book.cover_image
             }
         }

@@ -47,4 +47,5 @@ class User(db.Model, UserMixin):
             'is_admin': self.is_admin,
             'created_at': self.created_at.isoformat(),
             'updated_at': self.updated_at.isoformat(),
+            'avatars': [avatar.to_dict() for avatar in self.avatars],
         }

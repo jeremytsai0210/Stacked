@@ -2,13 +2,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 16px 32px;
   background-color: #20B2AA;
 }
 
 .profile-dropdown {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   position: absolute;
-  top: 2rem;
+  top: 32px;
   right: 0;
   list-style: none;
 }

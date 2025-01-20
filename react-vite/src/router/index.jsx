@@ -3,6 +3,7 @@ import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import HomePage from '../components/HomePage';
 import BookDetailPage from '../components/BookDetailPage';
+import UserProfilePage from '../components/UserProfilePage';
 import Layout from './Layout';
 
 export const router = createBrowserRouter([
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
       {
         path: "books/:bookId",
         element: <BookDetailPage />,
+      },
+      {
+        path: "users/current",
+        element: <UserProfilePage />,
       }
     ],
   },

@@ -22,6 +22,10 @@ function BookDetailPage() {
         dispatch(reviewActions.thunkGetBookReviews(bookId));
     }, [dispatch, bookId]);
 
+    const handleDeleteReview = (reviewId) => {
+        dispatch(reviewActions.thunkDeleteReview(reviewId));
+    }
+
     return (
         <div className="book-detail">
             <h1>{book?.title}</h1>

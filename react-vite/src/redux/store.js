@@ -8,11 +8,15 @@ import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import booksReducer from "./book";
 import reviewsReducer from "./review";
+import avatarsReducer from "./avatar";
+import borrowingTransactionsReducer from "./borrowing_transaction";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   books: booksReducer,
   reviews: reviewsReducer,
+  avatars: avatarsReducer,
+  borrowingTransactions: borrowingTransactionsReducer,
 });
 
 let enhancer;

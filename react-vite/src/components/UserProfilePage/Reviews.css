@@ -1,0 +1,48 @@
+.user-review-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.user-review-tile {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.user-review-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.user-review-book {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.user-review-cover-image {
+    height: auto;
+    width: 100px;
+}
+
+.user-review-header-text h3{
+    margin: 0;
+}
+
+.user-review-header-text h6{
+    margin: 5px;
+}
+
+.user-review-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-end;
+}
+
+.user-review-tile hr {
+    width: 100%;
+}
