@@ -1,0 +1,13 @@
+.delete-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.confirm-delete {
+    background-color: #ff6f61;
+}
+
+.confirm-delete:hover {
+    background-color: #cc4e45;
+}

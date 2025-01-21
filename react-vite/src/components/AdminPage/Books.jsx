@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as bookActions from '../../redux/book';
-import { FaTrash, FaPlus } from 'react-icons/fa';
 import OpenModalButton from '../OpenModalButton';
+import DeleteBookModal from '../DeleteBookModal';
 import AddBookModal from '../AddBookModal';
 import './Table.css';
 
@@ -54,10 +54,11 @@ function Books() {
                             <td className="table-cell">{book.total_copies}</td>
                             <td className="table-cell">
                                 <button className="edit-button">Edit</button>
-                                <span 
-                                    onClick={() => alert(`Book with ID ${book.id} will be deleted`)}>
-                                    <FaTrash className="delete-icon" />
-                                </span>
+                                <OpenModalButton
+                                    className="delete-button"
+                                    buttonText="Delete"
+                                    modalComponent={<DeleteBookModal bookId={book.id} />}
+                                />
                             </td>
                         </tr>
                     ))}
