@@ -6,12 +6,13 @@ function BorrowingTransactions() {
     const dispatch = useDispatch();
 
     const borrowingTransactions = useSelector((state) => Object.values(state.borrowingTransactions));
-
-    console.log('borrowingTransactions', borrowingTransactions);
+    const user = useSelector((state) => state.session.user);
 
     useEffect(() => {
-        dispatch(borrowingTransactionActions.thunkGetTransactions());
-    }, [dispatch]);
+        if(!user || !user.is_admin) {
+            dispatch(borrowingTransactionActions.thunkGetTransactions());
+        }
+    }, [dispatch, user]);
 
     return (
         <div>

@@ -10,6 +10,7 @@ import booksReducer from "./book";
 import reviewsReducer from "./review";
 import avatarsReducer from "./avatar";
 import borrowingTransactionsReducer from "./borrowing_transaction";
+import usersReducer from "./user";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   reviews: reviewsReducer,
   avatars: avatarsReducer,
   borrowingTransactions: borrowingTransactionsReducer,
+  users: usersReducer,
 });
 
 let enhancer;
