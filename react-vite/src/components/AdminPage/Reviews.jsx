@@ -1,13 +1,12 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import * as reviewActions from '../../redux/review';
+// import './Reviews.css';
 
 function Reviews() {
     const dispatch = useDispatch();
 
     const reviews = useSelector((state) => Object.values(state.reviews));
-
-    console.log('reviews', reviews);
 
     useEffect(() => {
         dispatch(reviewActions.thunkGetReviews());

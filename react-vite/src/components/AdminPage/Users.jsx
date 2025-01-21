@@ -5,16 +5,14 @@ import * as userActions from '../../redux/user';
 function Users() {
     const dispatch = useDispatch();
 
-    const current_user = useSelector((state) => state.session.user);
     const users = useSelector((state) => Object.values(state.users));
 
-    console.log('users', users);
-
     useEffect(() => {
-        if (!current_user || !current_user.is_admin) {
-            dispatch(userActions.thunkGetUsers());
-        }
+        dispatch(userActions.thunkGetUsers());
     }, [dispatch]);
+    
+    console.log("THIS IS FROM USERS");
+    console.log('users', users);
 
     return (
         <div>

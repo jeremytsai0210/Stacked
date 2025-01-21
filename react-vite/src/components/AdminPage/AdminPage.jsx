@@ -7,39 +7,33 @@ import Transactions from './BorrowingTransactions';
 import './AdminPage.css';
 
 function AdminPage() {
-    const user = useSelector((state) => state.session.user);
+    const state = useSelector((state) => state);
+    const current_user = useSelector((state) => state.session.user);
+
     const [activeTab, setActiveTab] = useState('users');
     
-    if (!user || !user.is_admin) {
+    if (!current_user || !current_user.is_admin) {
         return <h1>Unauthorized</h1>;
     }
 
+    console.log("THIS IS FROM ADMINPAGE");
+    console.log('current_user', current_user);
+    console.log('state', state);
+    console.log("THIS IS END OF ADMINPAGE");
+
     const renderContent = () => {
         switch (activeTab) {
-            case 'library':
-                return (
-                    <Users />
-                );
-
-            case 'reviews':
-                return (
-                    <Reviews />
-                );
-
-            case 'transactions':
-                return (
-                    <Transactions />
-                );
+            case 'users':
+                return <Users />;
 
             case 'books':
-                return (
-                    <Books />
-                );
+                return <Books />;
 
-            default:
-                return (
-                    <Users />
-                );
+            case 'transactions':
+                return <Transactions />;
+
+            case 'reviews':
+                return <Reviews />;
         }
     }
 

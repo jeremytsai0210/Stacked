@@ -1,13 +1,12 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as bookActions from '../../redux/book';
-import { useEffect } from 'react';
+// import './Books.css';
 
 function Books() {
     const dispatch = useDispatch();
 
     const books = useSelector((state) => Object.values(state.books));
-
-    console.log('books', books);
 
     useEffect(() => {
         dispatch(bookActions.thunkGetBooks());
