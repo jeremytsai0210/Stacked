@@ -45,6 +45,7 @@ const deleteTransaction = (transactionId) => ({
 // Action Thunks
 export const thunkGetTransactions = () => async (dispatch) => {
     const response = await fetch('/api/borrowing_transactions');
+    console.log('response', response);
     if (response.ok) {
         const data = await response.json();
         dispatch(loadTransactions(data.borrowing_transactions));

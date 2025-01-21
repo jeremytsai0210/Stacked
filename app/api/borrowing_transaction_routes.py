@@ -7,11 +7,14 @@ borrowing_transaction_routes = Blueprint('borrowing_transactions', __name__)
 
 # Get all borrowing transactions
 @borrowing_transaction_routes.route('/')
-@login_required
+# @login_required
 def borrowing_transactions():
     """
     Query for all borrowing transactions and returns them in a list of transaction dictionaries
     """
+    print('current_user:', current_user)
+    # print('is_admin:', getattr(current_user, 'is_admin', None))
+
     if not current_user.is_admin:
         return jsonify({'message': 'You are not authorized to view these transactions'}), 403
 

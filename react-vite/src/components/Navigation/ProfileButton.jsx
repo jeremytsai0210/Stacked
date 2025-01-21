@@ -53,7 +53,11 @@ function ProfileButton() {
             <>
               <li>Welcome, {user.username}!</li>
               <li>
-              <button onClick={() => navigate('/users/current')}>My Profile</button>
+                {(!user.is_admin) ? (
+                  <button onClick={() => navigate('/users/current')}>My Profile</button>
+                ) : (
+                  <button onClick={() => navigate('/admin')}>Admin</button>
+                )}
               </li>
               <li>
                 <button onClick={logout}>Log Out</button>

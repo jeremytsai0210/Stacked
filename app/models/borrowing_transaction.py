@@ -26,5 +26,16 @@ class BorrowingTransaction(db.Model):
             'borrow_date': self.borrow_date.isoformat() if self.borrow_date else None,
             'due_date': self.due_date.isoformat() if self.due_date else None,
             'return_date': self.return_date.isoformat() if self.return_date else None,
-            'status': self.status
+            'status': self.status,
+            'user': {
+                'id': self.user.id,
+                'username': self.user.username,
+                'first_name': self.user.first_name,
+                'last_name': self.user.last_name,
+            },
+            'book': {
+                'id': self.book.id,
+                'title': self.book.title,
+                'author': self.book.author,
+            }
         }
