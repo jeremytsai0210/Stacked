@@ -30,7 +30,7 @@ def user_books(user_id):
     
     borrowing_transactions = BorrowingTransaction.query.filter_by(user_id=user_id).all()
     if not borrowing_transactions:
-        return jsonify({'message': 'User did not borrow any books'}), 404
+        return jsonify({'message': 'User did not borrow any books'}), 200
     
     book_ids = {transaction.book_id for transaction in borrowing_transactions if transaction.return_date is None}
     if not book_ids:
@@ -239,7 +239,8 @@ def review_book(book_id):
         user_id=current_user.id,
         book_id=book_id
     ).first()
-    if existing_review:
+
+    if existing_review is not None:
         return jsonify({'message': 'You have already reviewed this book'}), 400
 
     data = request.get_json()

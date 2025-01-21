@@ -54,7 +54,11 @@ function ProfileButton() {
               <li>Welcome, {user.username}!</li>
               <li>
                 {(!user.is_admin) ? (
-                  <button onClick={() => navigate('/users/current')}>My Profile</button>
+                  <button onClick={() => {
+                    navigate('/users/current');
+                    closeMenu();
+                    location.reload();
+                  }}>My Profile</button>
                 ) : (
                   <button onClick={() => navigate('/admin')}>Admin</button>
                 )}

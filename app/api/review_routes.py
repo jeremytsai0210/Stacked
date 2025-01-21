@@ -29,7 +29,7 @@ def user_reviews(user_id):
     
     reviews = Review.query.filter_by(user_id=user_id).all()
     if not reviews:
-        return jsonify({'message': 'User did not write any reviews'}), 404
+        return jsonify({'message': 'User did not write any reviews'}), 200
 
     return jsonify({'reviews': [review.to_dict() for review in reviews]}), 200
 
