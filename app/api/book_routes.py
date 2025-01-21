@@ -174,10 +174,10 @@ def borrow_book(book_id):
     
     # Prevent duplicate borrowing
     existing_borrow = BorrowingTransaction.query.filter_by(
-        user_id=current_user.id,
-        book_id=book_id,
-        status='BORROWED'
-    ).first()
+        user_id = current_user.id,
+        book_id = book_id,
+        status = 'BORROWED'
+    ).first() 
     if existing_borrow:
         return jsonify({'message': 'You have already borrowed this book'}), 400
     
@@ -188,8 +188,8 @@ def borrow_book(book_id):
         'VIP': 20
     }
     borrowed_books = BorrowingTransaction.query.filter_by(
-        user_id=current_user.id,
-        status='BORROWED'
+        user_id = current_user.id,
+        status = 'BORROWED'
     ).count()
     if borrowed_books >= tier_limits.get(current_user.tier, 2):
         return jsonify({'message': f'Maximum borrowing limit reached for {current_user.tier} tier'}), 400
@@ -206,11 +206,11 @@ def borrow_book(book_id):
 
     # Create borrowing transaction
     borrowing_transaction = BorrowingTransaction(
-        user_id=current_user.id,
-        book_id=book_id,
-        borrow_date=borrow_date,
-        due_date=due_date,
-        status='BORROWED'
+        user_id = current_user.id,
+        book_id = book_id,
+        borrow_date = borrow_date,
+        due_date = due_date,
+        status = 'BORROWED'
     )
     book.available_copies -= 1
 
@@ -219,9 +219,7 @@ def borrow_book(book_id):
 
     return jsonify({
         'message': 'Book borrowed successfully',
-        'book': book.title,
-        'borrow_date': borrowing_transaction.borrow_date,
-        'due_date': borrowing_transaction.due_date
+        'borrowing_transaction': borrowing_transaction.to_dict()
     }), 200
 
 # Create a new review

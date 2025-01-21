@@ -4,6 +4,7 @@ import SignupFormPage from '../components/SignupFormPage';
 import HomePage from '../components/HomePage';
 import BookDetailPage from '../components/BookDetailPage';
 import UserProfilePage from '../components/UserProfilePage';
+import AdminPage from '../components/AdminPage';
 import Layout from './Layout';
 
 export const router = createBrowserRouter([
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
       {
         path: "users/current",
         element: <UserProfilePage />,
+      },
+      {
+        path: "admin",
+        element: <AdminPage />,
       }
     ],
   },

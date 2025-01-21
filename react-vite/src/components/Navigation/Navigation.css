@@ -6,6 +6,21 @@
   background-color: #20B2AA;
 }
 
+.nav-link {
+  color: #e2e2e2;
+  font-size: 32px;
+  font-weight: bold;
+  font-style: italic;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.home-logo {
+  height: 48px;
+  width: 48px;
+}
+
 .profile-dropdown {
   display: flex;
   flex-direction: column;

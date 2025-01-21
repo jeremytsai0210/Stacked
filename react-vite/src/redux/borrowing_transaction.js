@@ -75,27 +75,26 @@ export const thunkGetSingleTransaction = (transactionId) => async (dispatch) => 
     }
 }
 
-export const thunkAddTransaction = (transaction) => async (dispatch) => {
-    const response = await fetch('/api/borrowing_transactions/new', {
+export const thunkAddTransaction = (book_id) => async (dispatch) => {
+    const response = await fetch(`/api/books/${book_id}/borrow`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(transaction),
     });
     if (response.ok) {
         const data = await response.json();
+        console.log(data);
         dispatch(addTransaction(data.borrowing_transaction));
     }
 }
 
-export const thunkUpdateTransaction = (transaction) => async (dispatch) => {
-    const response = await fetch(`/api/borrowing_transactions/${transaction.id}`, {
-        method: 'PUT',
+export const thunkUpdateTransaction = (transaction_id) => async (dispatch) => {
+    const response = await fetch(`/api/borrowing_transactions/${transaction_id}/return`, {
+        method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(transaction),
     });
     if (response.ok) {
         const data = await response.json();

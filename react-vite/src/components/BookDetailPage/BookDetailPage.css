@@ -47,6 +47,10 @@
     cursor: not-allowed;
 }
 
+.borrow-button:disabled:hover {
+    background-color: #ccc;
+}
+
 /**************************
 THIS IS THE REVIEW SECTION 
 ***************************/

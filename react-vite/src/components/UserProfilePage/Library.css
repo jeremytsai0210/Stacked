@@ -15,9 +15,9 @@
 .user-book-tile {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    padding: 16px;
+    padding: 0 16px;
     border: 1px solid black;
     border-radius: 10px;
     margin: 16px;
@@ -25,18 +25,41 @@
     width: 250px;
 }
 
-.user-cover-image {
-    max-height: 200px;
-    object-fit: cover;
+.user-book-link {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
-@media (max-width: 1390px) {
+.user-cover-image {
+    max-width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: contain;
+}
+
+.user-book-information {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin-top: 0;
+}
+
+.user-book-information p {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0;
+}
+
+@media (max-width: 1300px) {
     .user-book-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media (max-width: 1050px) {
+@media (max-width: 1048px) {
     .user-book-grid {
         grid-template-columns: repeat(1, 1fr);
     }
