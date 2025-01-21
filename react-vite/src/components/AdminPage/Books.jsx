@@ -2,8 +2,9 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as bookActions from '../../redux/book';
 import OpenModalButton from '../OpenModalButton';
-import DeleteBookModal from '../DeleteBookModal';
 import AddBookModal from '../AddBookModal';
+import UpdateBookModal from '../UpdateBookModal';
+import DeleteBookModal from '../DeleteBookModal';
 import './Table.css';
 
 function Books() {
@@ -51,8 +52,12 @@ function Books() {
                             <td className="table-cell">{book.description}</td>
                             <td className="table-cell">{book.available_copies}</td>
                             <td className="table-cell">{book.total_copies}</td>
-                            <td className="table-cell">
-                                <button className="edit-button">Edit</button>
+                            <td className="table-cell-buttons">
+                                <OpenModalButton
+                                    className="update-button"
+                                    buttonText="Update"
+                                    modalComponent={<UpdateBookModal book={book} />}
+                                />
                                 <OpenModalButton
                                     className="delete-button"
                                     buttonText="Delete"

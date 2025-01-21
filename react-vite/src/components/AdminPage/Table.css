@@ -47,6 +47,9 @@
 .table-body .table-row {
     border-bottom: 1px solid #e2e2e2;
     transition: background-color 0.3s ease, color 0.3s ease;
+    padding: 10px 0;
+    margin: 10px 0;
+    gap: 10px;
 }
 
 .table-body .table-row:nth-child(even) {
@@ -71,6 +74,16 @@
 
 .delete-icon:hover {
     color: #ff6f61;
+}
+
+/* Table Cell Buttons */
+.table-cell-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 100%;
 }
 
 /* Responsive Styling */
