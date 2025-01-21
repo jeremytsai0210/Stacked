@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import * as borrowingTransactionActions from '../../redux/borrowing_transaction';
 import OpenModalButton from '../OpenModalButton';
-import DeleteBookModal from '../DeleteBookModal';
+import DeleteTransactionModal from '../DeleteTransactionModal';
 import './Table.css';
 
 function BorrowingTransactions() {
@@ -42,7 +42,7 @@ function BorrowingTransactions() {
                                 <OpenModalButton
                                     className="delete-button"
                                     buttonText="Delete"
-                                    modalComponent={<DeleteBookModal transactionId={borrowingTransaction.id} />}
+                                    modalComponent={<DeleteTransactionModal transactionId={borrowingTransaction.id} />}
                                 />
                             </td>
                         </tr>
