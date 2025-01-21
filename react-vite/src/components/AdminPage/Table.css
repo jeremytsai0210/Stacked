@@ -54,18 +54,7 @@
 }
 
 .add-book-row {
-    cursor: pointer;
     padding: 10px;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.add-book-row:hover {
-    background-color: #ff6f61;
-    color: white;
-}
-
-.add-book-row svg {
-    margin-right: 8px;
 }
 
 /* Table Cells */

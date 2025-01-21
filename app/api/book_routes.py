@@ -291,10 +291,10 @@ def review_book(book_id):
 
     # Create and save the new review
     new_review = Review(
-        user_id=current_user.id,
-        book_id=book_id,
-        review_text=review_text,
-        stars=stars
+        user_id = current_user.id,
+        book_id = book_id,
+        review_text = review_text,
+        stars = stars
     )
 
     db.session.add(new_review)

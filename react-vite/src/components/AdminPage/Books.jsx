@@ -36,10 +36,9 @@ function Books() {
                         <td colSpan="8" className="table-cell add-book-row">
                             <OpenModalButton
                                 className="add-book-button"
-                                buttonText="Add New Book"
+                                buttonText="+ Add New Book"
                                 modalComponent={<AddBookModal />}
                             />
-                            {/* <FaPlus /> Add New Book */}
                         </td>
                     </tr>
 

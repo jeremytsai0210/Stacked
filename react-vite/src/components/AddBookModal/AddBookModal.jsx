@@ -55,10 +55,10 @@ function AddBookModal() {
             author,
             description,
             genre,
-            coverImage,
-            totalCopies: parseInt(totalCopies, 10),
-            availableCopies: parseInt(availableCopies, 10),
-            publishedYear: parseInt(publishedYear, 10),
+            cover_image: coverImage,
+            total_copies: parseInt(totalCopies, 10),
+            available_copies: parseInt(availableCopies, 10),
+            published_year: parseInt(publishedYear, 10),
         };
     
         await dispatch(bookActions.thunkAddBook(newBook));
