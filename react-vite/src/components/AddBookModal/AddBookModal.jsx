@@ -43,6 +43,7 @@ function AddBookModal() {
         if (!totalCopies || totalCopies <= 0) validationErrors.totalCopies = 'Total copies must be a positive number.';
         if (!availableCopies || availableCopies < 0) validationErrors.availableCopies = 'Available copies must be 0 or a positive number.';
         if (!publishedYear || publishedYear.length !== 4) validationErrors.publishedYear = 'Published year must be a valid year (4 digits).';
+        if (parseInt(availableCopies, 10) > parseInt(totalCopies, 10)) validationErrors.availableCopies = 'Available copies cannot be greater than total copies.';
     
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
