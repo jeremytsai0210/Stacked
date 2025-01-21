@@ -55,7 +55,7 @@ def book(book_id):
     return jsonify({'book': book.to_dict()}), 200
 
 # Create a new book
-@book_routes.route('/new', methods=['POST'])
+@book_routes.route('/', methods=['POST'])
 @login_required
 def new_book():
     """
@@ -64,34 +64,72 @@ def new_book():
     if not current_user.is_admin:
         return jsonify({'message': 'You are not authorized to create a new book'}), 403
 
-    form = BookForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
+    data = request.get_json()
+    title = data.get('title')
+    author = data.get('author')
+    description = data.get('description')
+    genre = data.get('genre')
+    cover_image = data.get('cover_image')
+    total_copies = data.get('total_copies')
+    available_copies = data.get('available_copies')
+    published_year = data.get('published_year')
 
-    if form.validate_on_submit():
-
-        new_book = Book(
-            title = form.title.data,
-            author = form.author.data,
-            description = form.description.data,
-            genre = form.genre.data,
-            cover_image = form.cover_image.data,
-            total_copies = form.total_copies.data,
-            available_copies = form.available_copies.data,
-            published_year = form.published_year.data,
-        )
-
-        db.session.add(new_book)
-        db.session.commit()
-
-        return jsonify({
-            'message': 'Book created successfully',
-            'book': new_book.to_dict()
-        }), 200
+    # Validate the book data
+    if not title or not author or not description or not genre or not total_copies or not available_copies or not published_year:
+        return jsonify({'message': 'All fields are required'}), 400
     
+    if available_copies > total_copies:
+        return jsonify({'message': 'Available copies cannot be more than total copies'}), 400
+    
+    new_book = Book(
+        title = title,
+        author = author,
+        description = description,
+        genre = genre,
+        cover_image = cover_image,
+        total_copies = total_copies,
+        available_copies = available_copies,
+        published_year = published_year
+    )
+
+    db.session.add(new_book)
+    db.session.commit()
+
     return jsonify({
-        'message': 'Invalid data',
-        'errors': form.errors
-    }), 400
+        'message': 'Book created successfully',
+        'book': new_book.to_dict()
+    }), 200
+    
+# THIS CODE IS COMMENTED OUT BECAUSE THE BOOK FORM IS NOT BEING USED ANYMORE
+# VALIDATION IS DONE IN THE FRONTEND
+    # form = BookForm()
+    # form['csrf_token'].data = request.cookies['csrf_token']
+
+    # if form.validate_on_submit():
+
+    #     new_book = Book(
+    #         title = form.title.data,
+    #         author = form.author.data,
+    #         description = form.description.data,
+    #         genre = form.genre.data,
+    #         cover_image = form.cover_image.data,
+    #         total_copies = form.total_copies.data,
+    #         available_copies = form.available_copies.data,
+    #         published_year = form.published_year.data,
+    #     )
+
+    #     db.session.add(new_book)
+    #     db.session.commit()
+
+    #     return jsonify({
+    #         'message': 'Book created successfully',
+    #         'book': new_book.to_dict()
+    #     }), 200
+    
+    # return jsonify({
+    #     'message': 'Invalid data',
+    #     'errors': form.errors
+    # }), 400
 
 # Update a book
 @book_routes.route('/<int:book_id>', methods=['PUT'])

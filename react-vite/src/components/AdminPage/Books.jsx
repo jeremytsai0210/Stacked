@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as bookActions from '../../redux/book';
+import { FaTrash, FaPlus } from 'react-icons/fa';
+import OpenModalButton from '../OpenModalButton';
+import AddBookModal from '../AddBookModal';
 import './Table.css';
 
 function Books() {
@@ -25,9 +28,21 @@ function Books() {
                         <th className="table-column-name">Description</th>
                         <th className="table-column-name">Available Copies</th>
                         <th className="table-column-name">Total Copies</th>
+                        <th className="table-column-name">Actions</th>
                     </tr>
                 </thead>
                 <tbody className="table-body">
+                    <tr className="table-row">
+                        <td colSpan="8" className="table-cell add-book-row">
+                            <OpenModalButton
+                                className="add-book-button"
+                                buttonText="Add New Book"
+                                modalComponent={<AddBookModal />}
+                            />
+                            {/* <FaPlus /> Add New Book */}
+                        </td>
+                    </tr>
+
                     {books.map((book) => (
                         <tr key={book.id} className="table-row">
                             <td className="table-cell">{book.title}</td>
@@ -37,6 +52,13 @@ function Books() {
                             <td className="table-cell">{book.description}</td>
                             <td className="table-cell">{book.available_copies}</td>
                             <td className="table-cell">{book.total_copies}</td>
+                            <td className="table-cell">
+                                <button className="edit-button">Edit</button>
+                                <span 
+                                    onClick={() => alert(`Book with ID ${book.id} will be deleted`)}>
+                                    <FaTrash className="delete-icon" />
+                                </span>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

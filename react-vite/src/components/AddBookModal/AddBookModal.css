@@ -1,0 +1,37 @@
+.add-book-modal {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 10px;
+}
+
+.error {
+    color: #ff6f61;
+}
+
+.add-book-form-group input, select, textarea {
+    padding: 8px;
+    border: 1px solid #e2e2e2;
+    border-radius: 4px;
+}
+
+.add-book-form-group input:hover, select:hover, textarea:hover{
+    border: 1px solid #2b2b2b;
+}
+
+.add-book-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.book-copies {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.book-copies input {
+    width: 50%;
+}
