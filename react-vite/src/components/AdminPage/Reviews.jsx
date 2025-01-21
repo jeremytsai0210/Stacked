@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as reviewActions from '../../redux/review';
-// import './Reviews.css';
+import './Table.css';
 
 function Reviews() {
     const dispatch = useDispatch();
@@ -13,24 +13,24 @@ function Reviews() {
     }, [dispatch]);
 
     return (
-        <div>
-            <h1>Reviews</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>User</th>
-                        <th>Book</th>
-                        <th>Stars</th>
-                        <th>Review</th>
+        <div className="admin-components">
+            <h1 className="title">Reviews</h1>
+            <table className="table">
+                <thead className="table-header">
+                    <tr className="table-columns-header">
+                        <th className="table-column-name">User</th>
+                        <th className="table-column-name">Book</th>
+                        <th className="table-column-name">Stars</th>
+                        <th className="table-column-name">Review</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className="table-body">
                     {reviews.map((review) => (
-                        <tr key={review.id}>
-                            <td>{review.user.username}</td>
-                            <td>{review.book.title}</td>
-                            <td>{review.stars}</td>
-                            <td>{review.review_text}</td>
+                        <tr key={review.id} className="table-row">
+                            <td className="table-cell">{review.user.username}</td>
+                            <td className="table-cell">{review.book.title}</td>
+                            <td className="table-cell">{review.stars}</td>
+                            <td className="table-cell">{review.review_text}</td>
                         </tr>
                     ))}
                 </tbody>

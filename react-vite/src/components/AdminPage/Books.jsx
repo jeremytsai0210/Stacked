@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as bookActions from '../../redux/book';
-// import './Books.css';
+import './Table.css';
 
 function Books() {
     const dispatch = useDispatch();
@@ -13,30 +13,30 @@ function Books() {
     }, [dispatch]);
 
     return (
-        <div>
-            <h1>Books</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Author</th>
-                        <th>Genre</th>
-                        <th>Published Year</th>
-                        <th>Description</th>
-                        <th>Available Copies</th>
-                        <th>Total Copies</th>
+        <div className="admin-components">
+            <h1 className="title">Books</h1>
+            <table className="table">
+                <thead className="table-header">
+                    <tr className="table-columns-header">
+                        <th className="table-column-name">Title</th>
+                        <th className="table-column-name">Author</th>
+                        <th className="table-column-name">Genre</th>
+                        <th className="table-column-name">Published Year</th>
+                        <th className="table-column-name">Description</th>
+                        <th className="table-column-name">Available Copies</th>
+                        <th className="table-column-name">Total Copies</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className="table-body">
                     {books.map((book) => (
-                        <tr key={book.id}>
-                            <td>{book.title}</td>
-                            <td>{book.author}</td>
-                            <td>{book.genre}</td>
-                            <td>{book.published_year}</td>
-                            <td>{book.description}</td>
-                            <td>{book.available_copies}</td>
-                            <td>{book.total_copies}</td>
+                        <tr key={book.id} className="table-row">
+                            <td className="table-cell">{book.title}</td>
+                            <td className="table-cell">{book.author}</td>
+                            <td className="table-cell">{book.genre}</td>
+                            <td className="table-cell">{book.published_year}</td>
+                            <td className="table-cell">{book.description}</td>
+                            <td className="table-cell">{book.available_copies}</td>
+                            <td className="table-cell">{book.total_copies}</td>
                         </tr>
                     ))}
                 </tbody>

@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import * as borrowingTransactionActions from '../../redux/borrowing_transaction';
+import './Table.css';
 
 function BorrowingTransactions() {
     const dispatch = useDispatch();
@@ -12,28 +13,28 @@ function BorrowingTransactions() {
     }, [dispatch]);
 
     return (
-        <div>
-            <h1>Borrowing Transactions</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>User</th>
-                        <th>Book</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th>Return Date</th>
-                        <th>Status</th>
+        <div className="admin-components">
+            <h1 className="title">Borrowing Transactions</h1>
+            <table className="table">
+                <thead className="table-header">
+                    <tr className="table-columns-header">
+                        <th className="table-column-name">User</th>
+                        <th className="table-column-name">Book</th>
+                        <th className="table-column-name">Start Date</th>
+                        <th className="table-column-name">End Date</th>
+                        <th className="table-column-name">Return Date</th>
+                        <th className="table-column-name">Status</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className="table-body">
                     {borrowingTransactions.map((borrowingTransaction) => (
-                        <tr key={borrowingTransaction.id}>
-                            <td>{borrowingTransaction.user.username}</td>
-                            <td>{borrowingTransaction.book.title}</td>
-                            <td>{borrowingTransaction.borrow_date}</td>
-                            <td>{borrowingTransaction.due_date}</td>
-                            <td>{borrowingTransaction.return_date}</td>
-                            <td>{borrowingTransaction.status}</td>
+                        <tr key={borrowingTransaction.id} className="table-row">
+                            <td className="table-cell">{borrowingTransaction.user.username}</td>
+                            <td className="table-cell">{borrowingTransaction.book.title}</td>
+                            <td className="table-cell">{borrowingTransaction.borrow_date}</td>
+                            <td className="table-cell">{borrowingTransaction.due_date}</td>
+                            <td className="table-cell">{borrowingTransaction.return_date}</td>
+                            <td className="table-cell">{borrowingTransaction.status}</td>
                         </tr>
                     ))}
                 </tbody>
