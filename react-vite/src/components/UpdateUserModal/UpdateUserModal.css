@@ -1,0 +1,16 @@
+.update-user-modal {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.update-user-modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.update-user-modal input:hover {
+    border: 1px solid #2b2b2b;
+}

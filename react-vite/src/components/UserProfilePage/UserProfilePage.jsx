@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as bookActions from '../../redux/book';
 import * as reviewActions from '../../redux/review';
 // import * as avatarActions from '../../redux/avatar';
+import OpenModalButton from '../OpenModalButton';
+import UpdateUserModal from '../UpdateUserModal';
 import Library from './Library';
 import Reviews from './Reviews';
 import './UserProfilePage.css';
@@ -91,6 +93,11 @@ function UserProfilePage() {
                 <div className="user-actions">
                     <button onClick={() => setActiveTab('library')}>My Library</button>
                     <button onClick={() => setActiveTab('reviews')}>My Reviews</button>
+                    <OpenModalButton
+                        className="edit-profile-button"
+                        buttonText="Edit Profile"
+                        modalComponent={<UpdateUserModal user={user}/>}
+                    />
                 </div>
             </div>
 

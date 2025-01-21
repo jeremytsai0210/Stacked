@@ -35,6 +35,7 @@ export const thunkUpdateUser = (user) => async (dispatch) => {
     if (response.ok) {
         const data = await response.json();
         dispatch(updateUser(data.user));
+        return data;
     }
 };
 
