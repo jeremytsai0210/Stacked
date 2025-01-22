@@ -30,3 +30,10 @@
 .line {
     width: 100%;
 }
+
+.demo-logins {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}

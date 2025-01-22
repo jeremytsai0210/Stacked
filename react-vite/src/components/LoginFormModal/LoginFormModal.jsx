@@ -33,10 +33,27 @@ function LoginFormModal() {
     password: "password"
   };
 
+  const adminUser = {
+    email: "admin@aa.io",
+    password: "password"
+  }
+
   const handleDemoLogin = (e) => {
     e.preventDefault();
 
     dispatch(thunkLogin(demoUser))
+      .then(() => {
+        closeModal();
+      })
+      .catch((error) => {
+        console.error("Login failed", error);
+      });
+  }
+
+  const handleAdminLogin = (e) => {
+    e.preventDefault();
+
+    dispatch(thunkLogin(adminUser))
       .then(() => {
         closeModal();
       })
@@ -72,7 +89,10 @@ function LoginFormModal() {
         <button type="submit">Log In</button>
       </form>
       <hr className="line"/>
-      <button onClick={handleDemoLogin}>Log in as Demo User</button>
+      <div className="demo-logins">
+        <button onClick={handleDemoLogin}>Log in as Demo User</button>
+        <button onClick={handleAdminLogin}>Log in as Admin User</button>
+      </div>
     </div>
   );
 }
