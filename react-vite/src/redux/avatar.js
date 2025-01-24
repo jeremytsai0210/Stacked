@@ -1,5 +1,3 @@
-import { use } from "react";
-
 const LOAD_DEFAULT_AVATARS = 'avatar/loadDefaultAvatars';
 const LOAD_USER_AVATARS = 'avatar/loadUserAvatars';
 const ADD_AVATAR = 'avatar/addAvatar';

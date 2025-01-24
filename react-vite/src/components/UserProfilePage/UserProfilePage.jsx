@@ -7,6 +7,7 @@ import OpenModalButton from '../OpenModalButton';
 import UpdateUserModal from '../UpdateUserModal';
 import Library from './Library';
 import Reviews from './Reviews';
+// import Avatar from '../Avatar';
 import './UserProfilePage.css';
 
 function UserProfilePage() {
@@ -20,9 +21,11 @@ function UserProfilePage() {
 
     const [activeTab, setActiveTab] = useState('library');
 
-    console.log('user', user);
-    console.log('books', books);
-    console.log('reviews', reviews);
+    // console.log('user', user);
+    // console.log('books', books);
+    // console.log('reviews', reviews);
+    // console.log('defaultAvatars', defaultAvatars);
+    // console.log('defaultAvatars[0]', defaultAvatars[0]);
     // console.log('defaultAvatars[0].avatar_image', defaultAvatars[0]?.avatar_image);
     // console.log('userAvatars', userAvatars);
 
@@ -61,6 +64,8 @@ function UserProfilePage() {
                 <div className="user-header">
                     <h1>Hello {user?.first_name}!</h1>
                     <div className="user-avatar">
+                        {/* <Avatar /> */}
+                        {/* <img src={defaultAvatars[0]?.avatar_image} alt="User avatar" /> */}
                         <img src="https://images.pexels.com/photos/102155/pexels-photo-102155.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="User avatar" />
                     </div>
                 </div>
