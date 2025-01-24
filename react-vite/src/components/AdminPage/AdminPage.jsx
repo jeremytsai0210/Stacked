@@ -16,10 +16,10 @@ function AdminPage() {
         return <h1>Unauthorized</h1>;
     }
 
-    console.log("THIS IS FROM ADMINPAGE");
-    console.log('current_user', current_user);
-    console.log('state', state);
-    console.log("THIS IS END OF ADMINPAGE");
+    // console.log("THIS IS FROM ADMINPAGE");
+    // console.log('current_user', current_user);
+    // console.log('state', state);
+    // console.log("THIS IS END OF ADMINPAGE");
 
     const renderContent = () => {
         switch (activeTab) {

@@ -12,8 +12,8 @@ function Users() {
         dispatch(userActions.thunkGetUsers());
     }, [dispatch]);
     
-    console.log("THIS IS FROM USERS");
-    console.log('users', users);
+    // console.log("THIS IS FROM USERS");
+    // console.log('users', users);
 
     return (
         <div className="admin-components">

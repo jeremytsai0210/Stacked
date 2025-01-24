@@ -15,7 +15,7 @@ function UserProfilePage() {
 
     const user = useSelector((state) => state.session.user);
     const books = useSelector((state) => Object.values(state.books));
-    const reviews = useSelector((state) => Object.values(state.reviews));
+    // const reviews = useSelector((state) => Object.values(state.reviews));                        // Not used?
     // const defaultAvatars = useSelector((state) => Object.values(state.avatars.defaultAvatars));
     // const userAvatars = useSelector((state) => state.avatars.userAvatars);
 

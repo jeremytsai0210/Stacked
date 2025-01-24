@@ -62,8 +62,8 @@ export const thunkGetSingleBook = (bookId) => async (dispatch) => {
 };
 
 export const thunkAddBook = (book) => async (dispatch) => {
-    console.log("before response");
-    console.log("book", book);
+    // console.log("before response");
+    // console.log("book", book);
 
     const response = await fetch('/api/books', {
         method: 'POST',
@@ -71,8 +71,8 @@ export const thunkAddBook = (book) => async (dispatch) => {
         body: JSON.stringify(book),
     });
 
-    console.log("after response");
-    console.log("response", response);
+    // console.log("after response");
+    // console.log("response", response);
 
     if (response.ok) {
         const data = await response.json();
